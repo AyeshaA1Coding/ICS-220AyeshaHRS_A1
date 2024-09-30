@@ -1,0 +1,152 @@
+# Hotel Class
+class Hotel:
+    # Constructor to initialize hotel details
+    def __init__(self, name, address, phone, num_rooms):
+        self.__name = name  # Hotel name (private)
+        self.__address = address  # Hotel address (private)
+        self.__phone = phone  # Hotel phone (private)
+        self.__num_rooms = num_rooms  # Total number of rooms in the hotel (private)
+        self.__available_rooms = num_rooms  # Available rooms (private)
+
+    # Method to get the hotel name
+    def get_name(self):
+        return self.__name
+    
+    # Method to get the hotel address
+    def get_address(self):
+        return self.__address
+    
+    # Method to get the hotel phone number
+    def get_phone(self):
+        return self.__phone
+
+    # Method to get available rooms
+    def get_available_rooms(self):
+        return self.__available_rooms
+
+    # Method to book a room (decreases available room count)
+    def book_room(self):
+        if self.__available_rooms > 0:
+            self.__available_rooms -= 1
+        else:
+            raise Exception("No available rooms")
+
+# Guest Class
+class Guest:
+    # Constructor to initialize guest details
+    def __init__(self, name, email, phone, billing_address, credit_card):
+        self.__name = name  # Guest name (private)
+        self.__email = email  # Guest email (private)
+        self.__phone = phone  # Guest phone (private)
+        self.__billing_address = billing_address  # Guest billing address (private)
+        self.__credit_card = credit_card  # Guest credit card info (private)
+
+    # Method to get the guest's name
+    def get_name(self):
+        return self.__name
+    
+    # Method to get the guest's email
+    def get_email(self):
+        return self.__email
+    
+    # Method to get the guest's phone number
+    def get_phone(self):
+        return self.__phone
+    
+    # Method to get the guest's billing address
+    def get_billing_address(self):
+        return self.__billing_address
+    
+    # Method to get the guest's credit card info
+    def get_credit_card(self):
+        return self.__credit_card
+
+# Room Class
+class Room:
+    # Constructor to initialize room details
+    def __init__(self, room_number, room_type, price_per_night, smoking_status, num_beds):
+        self.__room_number = room_number  # Room number (private)
+        self.__room_type = room_type  # Room type (private)
+        self.__price_per_night = price_per_night  # Room price per night (private)
+        self.__smoking_status = smoking_status  # Smoking status (private)
+        self.__num_beds = num_beds  # Number of beds (private)
+
+    # Method to get the room number
+    def get_room_number(self):
+        return self.__room_number
+    
+    # Method to get the room type
+    def get_room_type(self):
+        return self.__room_type
+    
+    # Method to get the room price per night
+    def get_price_per_night(self):
+        return self.__price_per_night
+    
+    # Method to get the smoking status
+    def get_smoking_status(self):
+        return self.__smoking_status
+    
+    # Method to get the number of beds in the room
+    def get_num_beds(self):
+        return self.__num_beds
+
+# Reservation Class
+class Reservation:
+    # Constructor to initialize reservation details
+    def __init__(self, guest, room, check_in_date, check_out_date, confirmation_number):
+        self.__guest = guest  # Guest object (private)
+        self.__room = room  # Room object (private)
+        self.__check_in_date = check_in_date  # Check-in date (private)
+        self.__check_out_date = check_out_date  # Check-out date (private)
+        self.__confirmation_number = confirmation_number  # Reservation confirmation number (private)
+
+    # Method to get reservation details as a string
+    def get_reservation_details(self):
+        nights = self.calculate_nights()  # Calculate the number of nights
+        room_cost = nights * self.__room.get_price_per_night()  # Total cost for room
+        taxes_and_fees = 21.58  # Example taxes and fees
+        total_charges = room_cost + taxes_and_fees  # Total charges including taxes and fees
+        return f"Your Reservation is Confirmed\n" \
+               f"Thank you for your reservation. Please print your hotel receipt and show it at check-in.\n" \
+               f"Your Name: {self.__guest.get_name()}\n" \
+               f"Your Email: {self.__guest.get_email()}\n" \
+               f"Priceline Trip Number: 15549850358\n" \
+               f"Hotel Confirmation Number: {self.__confirmation_number}\n" \
+               f"Hotel: Comfort Inn & Suites Los Alamos\n" \
+               f"Address: 2455 Trinty Drive, Los Alamos, NM\n" \
+               f"Check-In: {self.__check_in_date}\n" \
+               f"Check-Out: {self.__check_out_date}\n" \
+               f"Number of Nights: {nights}\n" \
+               f"Phone: {self.__room.get_room_number()}\n" \
+               f"Room 1: {self.__guest.get_name()}\n" \
+               f"Room Type: {self.__room.get_room_type()}\n" \
+               f"Summary of Charges\n" \
+               f"Billing Name: {self.__guest.get_name()}\n" \
+               f"Credit Card: {self.__guest.get_credit_card()}\n" \
+               f"Room Cost: ${self.__room.get_price_per_night()} per night\n" \
+               f"Room Subtotal: ${room_cost}\n" \
+               f"Taxes and Fees: ${taxes_and_fees}\n" \
+               f"Total Charges: ${total_charges} (prices are in US dollars)"
+
+    # Method to calculate the number of nights (in this example, hardcoded as 2 for simplicity)
+    def calculate_nights(self):
+        # Assuming the check-in and check-out are provided in simple date format for demonstration
+        return 2  # Example hardcoded value for 2 nights
+
+# Simulation of Hotel Reservation System
+# Create a guest object
+guest = Guest("Ted Vera", "tedvera@mac.com", "505-661-1110", "2455 Trinty Drive, Los Alamos, NM", "Mastercard (ending in 9904)")
+
+# Create a room object
+room = Room("101", "2 Queen Beds/No Smoking", 89.95, "No", 2)
+
+# Create a hotel object
+hotel = Hotel("Comfort Inn & Suites Los Alamos", "2455 Trinty Drive, Los Alamos, NM", "505-661-1110", 50)
+
+# Create a reservation object linking the guest, room, and hotel details with check-in and check-out dates
+reservation = Reservation(guest, room, "Sun, Aug 22, 2010-03:00 PM", "Tue, Aug 24, 2010-12:00 PM", "52523687")
+
+# Printing reservation confirmation
+print("Description: Hotel Reservation System")
+print(reservation.get_reservation_details())
