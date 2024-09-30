@@ -1,0 +1,29 @@
+# Guest Class
+class Guest:
+    # Constructor to initialize guest details
+    def __init__(self, name, email, phone, billing_address, credit_card):
+        self.__name = name  # Guest name (private)
+        self.__email = email  # Guest email (private)
+        self.__phone = phone  # Guest phone (private)
+        self.__billing_address = billing_address  # Guest billing address (private)
+        self.__credit_card = credit_card  # Guest credit card info (private)
+
+    # Method to get the guest's name
+    def get_name(self):
+        return self.__name
+    
+    # Method to get the guest's email
+    def get_email(self):
+        return self.__email
+    
+    # Method to get the guest's phone number
+    def get_phone(self):
+        return self.__phone
+    
+    # Method to get the guest's billing address
+    def get_billing_address(self):
+        return self.__billing_address
+    
+    # Method to get the guest's credit card info
+    def get_credit_card(self):
+        return self.__credit_card
