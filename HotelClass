@@ -1,0 +1,32 @@
+# Hotel Class
+class Hotel:
+    # Constructor to initialize hotel details
+    def __init__(self, name, address, phone, num_rooms):
+        self.__name = name  # Hotel name (private)
+        self.__address = address  # Hotel address (private)
+        self.__phone = phone  # Hotel phone (private)
+        self.__num_rooms = num_rooms  # Total number of rooms in the hotel (private)
+        self.__available_rooms = num_rooms  # Available rooms (private)
+
+    # Method to get the hotel name
+    def get_name(self):
+        return self.__name
+    
+    # Method to get the hotel address
+    def get_address(self):
+        return self.__address
+    
+    # Method to get the hotel phone number
+    def get_phone(self):
+        return self.__phone
+
+    # Method to get available rooms
+    def get_available_rooms(self):
+        return self.__available_rooms
+
+    # Method to book a room (decreases available room count)
+    def book_room(self):
+        if self.__available_rooms > 0:
+            self.__available_rooms -= 1
+        else:
+            raise Exception("No available rooms")
