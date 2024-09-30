@@ -1,0 +1,29 @@
+# Room Class
+class Room:
+    # Constructor to initialize room details
+    def __init__(self, room_number, room_type, price_per_night, smoking_status, num_beds):
+        self.__room_number = room_number  # Room number (private)
+        self.__room_type = room_type  # Room type (private)
+        self.__price_per_night = price_per_night  # Room price per night (private)
+        self.__smoking_status = smoking_status  # Smoking status (private)
+        self.__num_beds = num_beds  # Number of beds (private)
+
+    # Method to get the room number
+    def get_room_number(self):
+        return self.__room_number
+    
+    # Method to get the room type
+    def get_room_type(self):
+        return self.__room_type
+    
+    # Method to get the room price per night
+    def get_price_per_night(self):
+        return self.__price_per_night
+    
+    # Method to get the smoking status
+    def get_smoking_status(self):
+        return self.__smoking_status
+    
+    # Method to get the number of beds in the room
+    def get_num_beds(self):
+        return self.__num_beds
